@@ -28,6 +28,7 @@ WORKDIR /app
 RUN apk update
 RUN apk add npm
 COPY ./ ./
+RUN chmod -R 777 /app/
 RUN npm i -g nodemon
 RUN npm i -g ts-node
 RUN npm install
