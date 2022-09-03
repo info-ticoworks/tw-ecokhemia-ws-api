@@ -31,4 +31,4 @@ COPY ./ ./
 RUN npm i -g nodemon
 RUN npm i -g ts-node
 RUN npm install
-CMD ["npm","start"]
+CMD ["node","./src/app.ts"]
