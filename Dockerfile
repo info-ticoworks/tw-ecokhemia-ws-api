@@ -5,4 +5,5 @@ RUN apk add nodejs
 COPY ./ ./
 RUN npm i -g nodemon
 RUN npm i-g ts-node
-CMD["npm","run","dev"] 
+RUN npm install
+CMD ["npm","run","dev"]
