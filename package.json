@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/app.ts",
-    "start": "nodemon ./src/app.ts",
+    "start": "node ./dist/app.js",
     "build": "tsc -p  ."
   },
   "keywords": [],
@@ -19,6 +19,7 @@
     "express": "^4.18.1",
     "node-dependency-injection": "^3.0.3",
     "qr-image": "^3.2.0",
+    "qrcode-terminal": "^0.12.0",
     "twilio": "^3.80.1",
     "uuid": "^8.3.2",
     "whatsapp-web.js": "^1.17.1"

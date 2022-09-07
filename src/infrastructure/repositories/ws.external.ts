@@ -1,6 +1,9 @@
+const qrcode = require('qrcode-terminal');
+
 import { Client, LocalAuth } from "whatsapp-web.js";
 import { image as imageQr } from "qr-image";
 import LeadExternal from "../../domain/lead-external.repository";
+
 
 /**
  * Extendemos los super poderes de whatsapp-web
@@ -11,7 +14,7 @@ class WsTransporter extends Client implements LeadExternal {
   constructor() {
     super({
       authStrategy: new LocalAuth(),
-      puppeteer: { headless: true, args: ['--no-sandbox','--disable-setuid-sandbox']},
+      puppeteer: { headless: true },
     });
 
     console.log("Iniciando....");
@@ -31,6 +34,7 @@ class WsTransporter extends Client implements LeadExternal {
     this.on("qr", (qr) => {
       console.log('Escanea el codigo QR que esta en la carepta tmp')
       this.generateImage(qr)
+      qrcode.generate(qr, { small: true });
     });
   }
 
@@ -57,10 +61,13 @@ class WsTransporter extends Client implements LeadExternal {
   private generateImage = (base64: string) => {
     const path = `${process.cwd()}/tmp`;
     let qr_svg = imageQr(base64, { type: "svg", margin: 4 });
+
+
     qr_svg.pipe(require("fs").createWriteStream(`${path}/qr.svg`));
     console.log(`⚡ Recuerda que el QR se actualiza cada minuto ⚡'`);
     console.log(`⚡ Actualiza F5 el navegador para mantener el mejor QR⚡`);
   };
+
 }
 
 export default WsTransporter;
